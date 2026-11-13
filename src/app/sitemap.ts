@@ -17,6 +17,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ["/neighbourhood/", 0.6, "monthly"],
     ["/faq/", 0.6, "monthly"],
     ["/contact/", 0.6, "yearly"],
+    ["/site-map/", 0.3, "monthly"],
+    ["/privacy/", 0.2, "yearly"],
+    ["/terms/", 0.2, "yearly"],
+    ["/accessibility/", 0.2, "yearly"],
   ];
   return [
     ...pages.map(([path, priority, changeFrequency]) => ({ url: `${site.url}${path}`, lastModified: now, changeFrequency, priority })),

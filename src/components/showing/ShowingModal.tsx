@@ -429,6 +429,14 @@ export function ShowingModal({ initialDate, onClose }: { initialDate?: string; o
                   </div>
                 </form>
 
+                <p className="mt-4 text-xs text-slate-500">
+                  Your details are used to book and confirm your tour. See our{" "}
+                  <a href="/privacy/" target="_blank" className="underline underline-offset-2 hover:text-slate-700">
+                    Privacy Policy
+                  </a>
+                  .
+                </p>
+
                 {submitError && <div className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-600">{submitError}</div>}
               </div>
             </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LogoLockup } from "@/components/brand/Logo";
-import { footerNav, fullAddress, site } from "@/data/site";
+import { footerNav, fullAddress, legalNav, site } from "@/data/site";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -56,9 +56,17 @@ export function SiteFooter() {
         </nav>
       </div>
       <div className="border-t border-canvas/10">
-        <div className="container flex flex-col gap-2 py-6 text-xs text-canvas/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {year} The Bellmont. All rights reserved.</p>
-          <p>Prices can change without notice.</p>
+        <div className="container flex flex-col gap-4 py-6 text-xs text-canvas/60 md:flex-row md:items-center md:justify-between">
+          <p>&copy; {year} The Bellmont. All rights reserved. Prices can change without notice.</p>
+          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+            {legalNav.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="text-canvas/75 underline-offset-4 hover:text-canvas hover:underline">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

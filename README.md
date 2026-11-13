@@ -23,6 +23,8 @@ npm run build && npm start
 | `/neighbourhood/` | Pioneer Park, distances, schools, map |
 | `/faq/` | All questions (FAQPage schema) |
 | `/contact/` | Contact form, phone, address, map |
+| `/site-map/` | Human-readable sitemap (linked in the footer) |
+| `/privacy/`, `/terms/`, `/accessibility/` | Policies. Written to match what the site does; update `policiesUpdated` in `src/data/site.ts` when they change |
 
 ## SEO
 

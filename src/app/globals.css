@@ -96,6 +96,23 @@
     @apply mb-1.5 block text-sm font-semibold text-brown;
   }
 
+  /* Policy pages */
+  .legal h2 {
+    @apply type-h3 mt-12 first:mt-0;
+  }
+  .legal h3 {
+    @apply mt-6 font-sans text-base font-semibold text-brown;
+  }
+  .legal p {
+    @apply mt-4;
+  }
+  .legal ul {
+    @apply mt-4 list-disc space-y-2 pl-6 marker:text-gold;
+  }
+  .legal a {
+    @apply link-plum font-normal;
+  }
+
   .hide-scrollbar {
     scrollbar-width: none;
   }

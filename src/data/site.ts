@@ -158,3 +158,13 @@ export const footerNav = [
     ],
   },
 ] as const;
+
+export const legalNav = [
+  { label: "Privacy Policy", href: "/privacy/" },
+  { label: "Terms of Use", href: "/terms/" },
+  { label: "Accessibility", href: "/accessibility/" },
+  { label: "Sitemap", href: "/site-map/" },
+] as const;
+
+/** Date the current policies took effect. Update it whenever a policy changes. */
+export const policiesUpdated = "November 13, 2026";

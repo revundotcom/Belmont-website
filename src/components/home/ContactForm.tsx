@@ -126,7 +126,13 @@ export function ContactForm() {
           "Ask a leasing advisor"
         )}
       </button>
-      <p className="mt-3 text-xs text-brown-muted">We only use your details to answer you about The Bellmont.</p>
+      <p className="mt-3 text-xs text-brown-muted">
+        We use your details only to answer you about The Bellmont. See our{" "}
+        <a href="/privacy/" className="underline underline-offset-2 hover:text-brown">
+          Privacy Policy
+        </a>
+        .
+      </p>
     </form>
   );
 }
