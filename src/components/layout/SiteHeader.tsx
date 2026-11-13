@@ -39,9 +39,9 @@ export function SiteHeader() {
           <LogoWordmarkAlt className="w-[150px] text-canvas lg:w-[172px]" />
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
           {nav.map((item) => {
-            const active = item.href === "/suites/" && pathname?.startsWith("/suites");
+            const active = !!pathname && (pathname.startsWith(item.href) || (item.href === "/suites/" && /^\/(private-rooms|whole-suites)/.test(pathname)));
             return (
               <Link
                 key={item.href}
@@ -57,8 +57,8 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-5 md:flex">
-          <a href={site.phoneHref} className="hidden items-center gap-2 text-sm font-medium text-canvas/85 hover:text-canvas lg:flex">
+        <div className="hidden items-center gap-5 lg:flex">
+          <a href={site.phoneHref} className="hidden items-center gap-2 text-sm font-medium text-canvas/85 hover:text-canvas xl:flex">
             <Phone className="size-4" aria-hidden /> {site.phone}
           </a>
           <Link href="/suites/" className="btn-canvas min-h-[2.5rem] px-5 text-sm">
@@ -68,7 +68,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="-mr-2 inline-flex size-11 items-center justify-center rounded-full text-canvas hover:bg-canvas/10 md:hidden"
+          className="-mr-2 inline-flex size-11 items-center justify-center rounded-full text-canvas hover:bg-canvas/10 lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -79,14 +79,14 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div id="mobile-menu" className="fixed inset-x-0 bottom-0 top-16 z-50 flex animate-fade-in flex-col bg-bell md:hidden">
+        <div id="mobile-menu" className="fixed inset-x-0 bottom-0 top-16 z-50 flex animate-fade-in flex-col overflow-y-auto bg-bell lg:hidden">
           <nav aria-label="Mobile" className="container flex flex-1 flex-col pt-6">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-canvas/15 py-5 font-serif text-[1.75rem] leading-none text-canvas"
+                className="border-b border-canvas/15 py-4 font-serif text-[1.625rem] leading-none text-canvas"
               >
                 {item.label}
               </Link>

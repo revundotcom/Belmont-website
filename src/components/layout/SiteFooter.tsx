@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LogoLockup } from "@/components/brand/Logo";
-import { fullAddress, nav, site } from "@/data/site";
+import { footerNav, fullAddress, site } from "@/data/site";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -35,16 +35,25 @@ export function SiteFooter() {
             {site.phone}
           </a>
           <p className="mt-2 text-sm text-canvas/70">{site.phoneHours}</p>
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="eyebrow text-canvas/75 hover:text-canvas">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
+      </div>
+      <div className="border-t border-canvas/10">
+        <nav aria-label="Footer" className="container grid grid-cols-2 gap-8 py-12 sm:grid-cols-3">
+          {footerNav.map((col) => (
+            <div key={col.title}>
+              <p className="eyebrow text-seafoam">{col.title}</p>
+              <ul className="mt-4 space-y-2.5">
+                {col.links.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="text-canvas/80 hover:text-canvas">
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </nav>
       </div>
       <div className="border-t border-canvas/10">
         <div className="container flex flex-col gap-2 py-6 text-xs text-canvas/60 sm:flex-row sm:items-center sm:justify-between">

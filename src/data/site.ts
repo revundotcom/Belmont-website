@@ -7,7 +7,7 @@
  */
 export const site = {
   name: "The Bellmont",
-  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.thebellmont.ca").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://bellmontkitchener.ca").replace(/\/$/, ""),
   tagline: "Two buildings. One community.",
   description:
     "The Bellmont at 200 Old Carriage Drive, Kitchener: private rooms and whole 3 and 4-bedroom suites across two towers, minutes from Conestoga College. See prices, book a showing and apply online.",
@@ -47,8 +47,23 @@ export const amenityGroups = [
   },
   {
     title: "Everyday",
-    items: ["Lobby and elevators", "Underground parking", "Property management and maintenance on site"],
+    items: [
+      "24/7 convenience store in the building",
+      "Lobby and elevators",
+      "Underground parking",
+      "Property management and maintenance on site",
+    ],
   },
+] as const;
+
+/** Headline amenities, used for cards and structured data. */
+export const amenityHighlights = [
+  { title: "24/7 convenience store", body: "Snacks, groceries and household basics downstairs, open around the clock." },
+  { title: "Fitness centre & yoga room", body: "Work out or stretch without leaving the building." },
+  { title: "Theatre, lounge & games room", body: "Movie nights, table tennis and space to unwind with neighbours." },
+  { title: "Meeting & study rooms", body: "Five meeting rooms and two study rooms, with free Wi-Fi in common areas." },
+  { title: "Underground parking", body: "Underground spaces at $75 per vehicle per month." },
+  { title: "On-site management", body: "Property management and maintenance in the building." },
 ] as const;
 
 export const inSuite = [
@@ -91,11 +106,55 @@ export const faqs = [
     q: "How do I apply?",
     a: "Press Apply Now on the suite you want. You'll create an account (or sign in) on our secure leasing portal and finish your application there.",
   },
+  {
+    q: "Are the rooms furnished?",
+    a: "Private rooms in Tower A come furnished with a bed, a desk, a chair and a closet. Whole suites in Tower B are rented unfurnished.",
+  },
+  {
+    q: "Is there laundry in the suite?",
+    a: "Yes. Every suite has its own washer and dryer, plus a full kitchen with fridge, stove, dishwasher and microwave.",
+  },
+  {
+    q: "How far is The Bellmont from Conestoga College?",
+    a: "A few minutes from Conestoga College's Kitchener campus. The University of Waterloo and Wilfrid Laurier University are about 20 minutes away.",
+  },
+  {
+    q: "Is there a store in the building?",
+    a: "Yes. There's a 24/7 convenience store in the building for snacks, groceries and household basics.",
+  },
 ] as const;
 
 export const nav = [
   { label: "Suites", href: "/suites/" },
-  { label: "Amenities", href: "/#amenities" },
-  { label: "Neighbourhood", href: "/#neighbourhood" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Amenities", href: "/amenities/" },
+  { label: "Gallery", href: "/gallery/" },
+  { label: "Neighbourhood", href: "/neighbourhood/" },
+  { label: "FAQ", href: "/faq/" },
+  { label: "Contact", href: "/contact/" },
+] as const;
+
+export const footerNav = [
+  {
+    title: "Live here",
+    links: [
+      { label: "All suites", href: "/suites/" },
+      { label: "Private rooms · Tower A", href: "/private-rooms/" },
+      { label: "Whole suites · Tower B", href: "/whole-suites/" },
+    ],
+  },
+  {
+    title: "The building",
+    links: [
+      { label: "Amenities", href: "/amenities/" },
+      { label: "Gallery", href: "/gallery/" },
+      { label: "Neighbourhood", href: "/neighbourhood/" },
+    ],
+  },
+  {
+    title: "Help",
+    links: [
+      { label: "FAQ", href: "/faq/" },
+      { label: "Contact", href: "/contact/" },
+    ],
+  },
 ] as const;

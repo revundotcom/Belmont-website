@@ -13,9 +13,23 @@ npm run build && npm start
 
 | Route | What |
 | --- | --- |
-| `/` | Hero, two towers, featured listings, amenities, gallery, neighbourhood + map, FAQ, contact form |
+| `/` | Hero, two towers, featured listings, short amenities / gallery / neighbourhood / FAQ sections linking to their pages, contact form |
 | `/suites/` | All Bellmont listings with Tower / suite-size filters (`?tower=A` or `?tower=B`) |
-| `/suites/[slug]/` | Listing detail: gallery + lightbox, facts, listing copy, live showing slots, Apply Now, similar listings |
+| `/suites/[slug]/` | Listing detail: gallery + lightbox, facts, listing copy, Schedule a Tour, Apply Now, similar listings |
+| `/private-rooms/` | Tower A landing page (furnished rooms, individual leases) + its listings |
+| `/whole-suites/` | Tower B landing page (whole 3 & 4-bedroom suites) + its listings |
+| `/amenities/` | Amenities incl. the 24/7 convenience store |
+| `/gallery/` | Every building and suite photo |
+| `/neighbourhood/` | Pioneer Park, distances, schools, map |
+| `/faq/` | All questions (FAQPage schema) |
+| `/contact/` | Contact form, phone, address, map |
+
+## SEO
+
+- Own title, description and canonical on every page (`src/lib/seo.ts`), canonical domain `https://bellmontkitchener.ca`.
+- Structured data: ApartmentComplex + WebSite (site-wide), BreadcrumbList (inner pages), ItemList (listing pages), Apartment + Offer (suite pages), FAQPage, ContactPage.
+- `sitemap.xml` (all pages + every suite, with images), `robots.txt`, web manifest, brand share image (`opengraph-image`) and apple icon.
+- Optional `NEXT_PUBLIC_GSC_VERIFICATION` adds the Google Search Console meta tag.
 
 ## Data — same portal APIs as movesmartrentals.com
 
@@ -43,7 +57,8 @@ Listings are portal "adverts" (one card per room/suite type per floor band), so 
 
 | Variable | Purpose |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical origin for metadata/sitemap (placeholder default: `https://www.thebellmont.ca`) |
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin for metadata/sitemap (default `https://bellmontkitchener.ca`) |
+| `NEXT_PUBLIC_GSC_VERIFICATION` | Optional Google Search Console verification token |
 | `NEXT_PUBLIC_PORTAL_BASE_URL` | Portal host override |
 
 ## Brand

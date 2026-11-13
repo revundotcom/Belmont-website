@@ -13,6 +13,7 @@ import { amenityGroups, site } from "@/data/site";
 import { getListing, getSuites } from "@/lib/bellmont";
 import { applyUrl, isBellmont } from "@/lib/portal";
 import { listingGallery, parseListingCopy, toSuite } from "@/lib/suite";
+import { breadcrumbSchema, pageMeta } from "@/lib/seo";
 
 export const revalidate = 1800;
 export const dynamicParams = true;
@@ -34,14 +35,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getListing(slug).catch(() => null);
   if (!data) return { title: "Suite not found" };
   const s = toSuite(data.unit);
-  const title = `${s.title}${s.tower ? `, Tower ${s.tower}` : ""} — ${s.priceLabel} ${s.priceUnit}`;
-  const description = parseListingCopy(data.unit.description_html, data.unit.description).sections[0]?.paragraphs[0]?.slice(0, 158) ?? site.description;
-  return {
-    title,
-    description,
-    alternates: { canonical: `/suites/${slug}/` },
-    openGraph: { title: `${title} | ${site.name}`, description, url: `/suites/${slug}/`, images: s.image ? [{ url: s.image }] : undefined },
-  };
+  const title = `${s.title} for Rent in Kitchener${s.tower ? ` · Tower ${s.tower}` : ""} — ${s.priceLabel}/mo`;
+  const lead = parseListingCopy(data.unit.description_html, data.unit.description).sections[0]?.paragraphs[0];
+  const description = lead ? (lead.length > 158 ? `${lead.slice(0, 155).replace(/\s+\S*$/, "")}…` : lead) : site.description;
+  return pageMeta({ title, description, path: `/suites/${slug}/`, image: s.image });
 }
 
 export default async function SuitePage({ params }: Props) {
@@ -288,7 +285,15 @@ export default async function SuitePage({ params }: Props) {
       </div>
 
       <MobileActionBar applyHref={apply} priceLabel={suite.priceLabel} priceUnit={suite.priceUnit} />
-      <JsonLd data={schema} />
+      <JsonLd
+        data={[
+          schema,
+          breadcrumbSchema([
+            { name: "Suites", path: "/suites/" },
+            { name: `${suite.title}, ${suite.subtitle}`, path: `/suites/${slug}/` },
+          ]),
+        ]}
+      />
     </ShowingProvider>
   );
 }
