@@ -6,7 +6,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Contact & Leasing Office",
-  description: `Contact The Bellmont leasing team: call ${site.phone} any time, or send a message. ${fullAddress}.`,
+  description: `Contact The Bellmont leasing team: call ${site.phone} any time, or book a tour online. ${fullAddress}.`,
   path: "/contact/",
 });
 
@@ -17,7 +17,7 @@ export default function ContactPage() {
         crumbs={[{ name: "Contact", path: "/contact/" }]}
         eyebrow="Contact"
         title="Let's find your place."
-        intro="Tell us what you're looking for, or call — we answer 24 hours a day, 7 days a week."
+        intro="Call us any time — we answer 24 hours a day, 7 days a week — or book a tour of the suite you like."
       />
       <ContactSection heading={false} />
       <section className="py-16 lg:py-20">

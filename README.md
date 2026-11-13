@@ -13,7 +13,7 @@ npm run build && npm start
 
 | Route | What |
 | --- | --- |
-| `/` | Hero, two towers, featured listings, short amenities / gallery / neighbourhood / FAQ sections linking to their pages, contact form |
+| `/` | Hero, two towers, featured listings, short amenities / gallery / neighbourhood / FAQ sections linking to their pages, contact and tour section |
 | `/suites/` | All Bellmont listings with Tower / suite-size filters (`?tower=A` or `?tower=B`) |
 | `/suites/[slug]/` | Listing detail: gallery + lightbox, facts, listing copy, Schedule a Tour, Apply Now, similar listings |
 | `/private-rooms/` | Tower A landing page (furnished rooms, individual leases) + its listings |
@@ -22,7 +22,7 @@ npm run build && npm start
 | `/gallery/` | Every building and suite photo |
 | `/neighbourhood/` | Pioneer Park, distances, schools, map |
 | `/faq/` | All questions (FAQPage schema) |
-| `/contact/` | Contact form, phone, address, map |
+| `/contact/` | Phone, address, map, and a "book a tour" card (no free-text form: every enquiry goes through the tour booking) |
 | `/site-map/` | Human-readable sitemap (linked in the footer) |
 | `/privacy/`, `/terms/`, `/accessibility/` | Policies. Written to match what the site does; update `policiesUpdated` in `src/data/site.ts` when they change |
 
@@ -45,7 +45,6 @@ All in `src/lib/portal.ts`. Base URL: `NEXT_PUBLIC_PORTAL_BASE_URL` (default `ht
 | Book a slot | `POST /api/v1/showing/store` | browser |
 | Request a time (no slots) | `POST /api/v1/showing/submit-lead` | browser |
 | Apply Now | `→ /offer/reserve/{slug}` | portal page |
-| Contact form | `POST /api/lead-submit` | server, via `/api/contact` |
 
 Listings are portal "adverts" (one card per room/suite type per floor band), so the tour endpoints are called with the listing **slug**, exactly as the MoveSmart site does.
 

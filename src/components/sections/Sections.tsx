@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight, CalendarCheck, FileSignature, Phone, Search } from "lucide-react";
 import { LogoMark } from "@/components/brand/Logo";
 import { BuildingGallery } from "@/components/home/BuildingGallery";
-import { ContactForm } from "@/components/home/ContactForm";
 import { Faq } from "@/components/ui/Faq";
 import { Eyebrow, SectionHeading } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
@@ -239,7 +238,7 @@ export function ContactSection({ heading = true }: { heading?: boolean }) {
       <div className="container grid gap-12 lg:grid-cols-2 lg:gap-20">
         <div>
           {heading ? (
-            <SectionHeading light eyebrow="Contact" title="Let's find your place." intro="Tell us what you're looking for and a leasing advisor will get back to you." />
+            <SectionHeading light eyebrow="Contact" title="Let's find your place." intro="Call us with any question, or book a tour of the suite you like." />
           ) : (
             <>
               <p className="eyebrow text-canvas/75">Leasing office</p>
@@ -260,9 +259,45 @@ export function ContactSection({ heading = true }: { heading?: boolean }) {
             </div>
           </div>
         </div>
-        <ContactForm />
+        <TourCard />
       </div>
     </section>
+  );
+}
+
+/** Every enquiry goes through the tour booking (showing APIs), so the leasing team gets it as a showing. */
+function TourCard() {
+  const steps = [
+    "Choose a private room or whole suite.",
+    "Pick an open time on its page, or request one.",
+    "We confirm and show you around.",
+  ];
+  return (
+    <div className="flex flex-col rounded-[1.25rem] bg-canvas-soft p-6 text-brown sm:p-8">
+      <CalendarCheck className="size-9 text-bell" aria-hidden />
+      <h3 className="type-h2 mt-5">Book a tour</h3>
+      <p className="mt-3 text-body text-brown-muted">The quickest way to see The Bellmont and get your questions answered in person.</p>
+      <ol className="mt-6 space-y-3">
+        {steps.map((s, i) => (
+          <li key={s} className="flex items-start gap-3">
+            <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-bell font-serif text-sm text-canvas">{i + 1}</span>
+            <span className="pt-0.5">{s}</span>
+          </li>
+        ))}
+      </ol>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <Link href="/suites/" className="btn-plum">
+          Choose a suite to tour <ArrowRight className="size-4" aria-hidden />
+        </Link>
+      </div>
+      <p className="mt-4 text-sm text-brown-muted">
+        Prefer to talk? Call{" "}
+        <a href={site.phoneHref} className="font-semibold text-brown underline underline-offset-2 hover:text-plum">
+          {site.phone}
+        </a>{" "}
+        and we&rsquo;ll book it for you.
+      </p>
+    </div>
   );
 }
 

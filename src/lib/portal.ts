@@ -4,7 +4,6 @@
  *
  *   GET  /api/properties?search=…&per_page=…   listings          (server)
  *   GET  /api/property/{slug}                   one listing       (server)
- *   POST /api/lead-submit                       contact lead      (server, via /api/contact)
  *   GET  /api/v1/showing/slots/{slug}           showing slots     (browser)
  *   POST /api/v1/showing/store                  book a slot       (browser)
  *   POST /api/v1/showing/submit-lead            request a time    (browser, when no slots)
@@ -104,36 +103,4 @@ export function portalImage(
     return `${PORTAL_BASE_URL}${p}`;
   }
   return null;
-}
-
-// ---------------------------------------------------------------------------
-// Lead submit (server only — called from /api/contact)
-// ---------------------------------------------------------------------------
-
-export interface LeadPayload {
-  first_name: string;
-  last_name: string;
-  email: string;
-  /** The API wants (123) 456-7890. */
-  phone: string;
-  user_type: "Tenant";
-  source: string;
-  property_type?: string;
-  city?: string;
-}
-
-export async function submitLead(payload: LeadPayload): Promise<{ ok: boolean; status: number; message?: string }> {
-  try {
-    const res = await fetch(`${PORTAL_BASE_URL}/api/lead-submit`, {
-      method: "POST",
-      headers: JSON_HEADERS,
-      body: JSON.stringify(payload),
-      cache: "no-store",
-    });
-    if (res.ok) return { ok: true, status: res.status };
-    const data = (await res.json().catch(() => null)) as { message?: string } | null;
-    return { ok: false, status: res.status, message: data?.message || `Lead API responded with ${res.status}` };
-  } catch (err) {
-    return { ok: false, status: 0, message: err instanceof Error ? err.message : "Network error" };
-  }
 }

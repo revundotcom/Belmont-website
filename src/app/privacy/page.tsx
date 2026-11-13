@@ -1,17 +1,16 @@
-import Link from "next/link";
 import { LegalPage } from "@/components/ui/LegalPage";
 import { fullAddress, site } from "@/data/site";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Privacy Policy",
-  description: "How The Bellmont website collects, uses and protects your personal information when you browse, contact us, book a tour or apply.",
+  description: "How The Bellmont website collects, uses and protects your personal information when you browse, book a tour or apply.",
   path: "/privacy/",
 });
 
 /*
  * Written to match what this site actually does (see src/lib/portal.ts,
- * ShowingModal.tsx, ContactForm.tsx). If the site starts collecting anything
+ * ShowingModal.tsx). If the site starts collecting anything
  * new — analytics, chat, cookies — update this page in the same change.
  */
 export default function PrivacyPage() {
@@ -31,9 +30,6 @@ export default function PrivacyPage() {
       <h2>What we collect</h2>
       <h3>Information you give us</h3>
       <ul>
-        <li>
-          <strong>Contact form:</strong> your first and last name, email address, phone number and the type of home you&rsquo;re looking for.
-        </li>
         <li>
           <strong>Tour booking:</strong> your first and last name, email address, phone number, expected move-in date, and the suite, date and
           time you choose.
@@ -67,7 +63,7 @@ export default function PrivacyPage() {
       <h2>Who we share it with</h2>
       <ul>
         <li>
-          <strong>Our leasing team and leasing system.</strong> Contact form and tour details are sent to the leasing management system our
+          <strong>Our leasing team and leasing system.</strong> Tour details are sent to the leasing management system our
           team uses to manage enquiries and tours, and to the people who respond to you.
         </li>
         <li>
@@ -110,8 +106,7 @@ export default function PrivacyPage() {
       <h2>Your choices and rights</h2>
       <p>
         You can ask to see the personal information we hold about you, ask us to correct it, or withdraw your consent to our using it (which
-        may mean we can no longer help with your enquiry or tour). To do any of these, call us at <a href={site.phoneHref}>{site.phone}</a> or
-        send a request through our <Link href="/contact/">contact page</Link>.
+        may mean we can no longer help with your enquiry or tour). To do any of these, call us at <a href={site.phoneHref}>{site.phone}</a>.
       </p>
       <p>
         If you&rsquo;re not satisfied with our response, you can contact the{" "}
