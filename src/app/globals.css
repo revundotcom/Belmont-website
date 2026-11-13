@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-canvas font-sans text-body text-brown antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif font-normal text-bell;
+    font-optical-sizing: auto;
+  }
+  ::selection {
+    background: #b5c6c9;
+    color: #1a3338;
+  }
+  :focus-visible {
+    outline: 2px solid #71333d;
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-sans text-eyebrow uppercase;
+  }
+  /* Display: Fraunces Regular 64/68, optical size 144 */
+  .type-display {
+    @apply font-serif text-[2.75rem] leading-[3rem] sm:text-[3.5rem] sm:leading-[3.75rem] lg:text-display;
+    font-variation-settings: "opsz" 144;
+  }
+  .type-h1 {
+    @apply font-serif text-[2.25rem] leading-[2.625rem] md:text-h1;
+    font-variation-settings: "opsz" 96;
+  }
+  .type-h2 {
+    @apply font-serif text-[1.75rem] leading-[2.125rem] md:text-h2;
+    font-variation-settings: "opsz" 72;
+  }
+  .type-h3 {
+    @apply font-serif text-h3 font-medium;
+    font-variation-settings: "opsz" 36;
+  }
+  .rule-gold {
+    @apply block h-px w-[4.5rem] bg-gold;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[3rem] items-center justify-center gap-2 rounded-full px-6 font-sans text-[0.9375rem] font-semibold tracking-[0.01em] transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  /* The one thing to act on */
+  .btn-plum {
+    @apply btn bg-plum text-canvas hover:bg-plum-700;
+  }
+  /* Primary action on a Bell Blue / Teal field */
+  .btn-canvas {
+    @apply btn bg-canvas text-plum hover:bg-white;
+  }
+  .btn-outline {
+    @apply btn border border-bell/40 text-bell hover:border-bell hover:bg-bell hover:text-canvas;
+  }
+  .btn-outline-light {
+    @apply btn border border-canvas/50 text-canvas hover:border-canvas hover:bg-canvas hover:text-bell;
+  }
+  .link-plum {
+    @apply font-semibold text-plum underline decoration-plum/30 underline-offset-4 transition-colors hover:decoration-plum;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-grey bg-canvas-soft px-4 py-3 text-body text-brown placeholder:text-brown-muted/70 transition-colors focus:border-bell focus:outline-none focus:ring-1 focus:ring-bell;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-semibold text-brown;
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* react-phone-number-input, restyled to the brand */
+.PhoneInput {
+  display: flex;
+  align-items: center;
+}
+.PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 0.75rem 0.25rem;
+  font-size: 1rem;
+  color: #322b23;
+}
+.PhoneInputCountry {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+  position: relative;
+}
+.PhoneInputCountrySelect {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.PhoneInputCountryIcon {
+  width: 1.5rem;
+  height: 1rem;
+}
+.PhoneInputCountryIconImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.PhoneInputCountrySelectArrow {
+  margin-left: 0.4rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid #5e554a;
+  border-bottom: 1.5px solid #5e554a;
+  transform: rotate(45deg) translateY(-2px);
+}
