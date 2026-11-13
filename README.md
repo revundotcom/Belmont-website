@@ -23,8 +23,8 @@ All in `src/lib/portal.ts`. Base URL: `NEXT_PUBLIC_PORTAL_BASE_URL` (default `ht
 
 | Use | Endpoint | Where |
 | --- | --- | --- |
-| Listings | `GET /api/properties?search=old carriage&per_page=100` | server, ISR 5 min |
-| Listing detail | `GET /api/property/{slug}` | server, ISR 5 min |
+| Listings | `GET /api/properties?search=old carriage&per_page=100` | server, cached 5 min |
+| Listing detail | `GET /api/property/{slug}` | server, page cached 30 min |
 | Showing slots | `GET /api/v1/showing/slots/{slug}` | browser |
 | Book a slot | `POST /api/v1/showing/store` | browser |
 | Request a time (no slots) | `POST /api/v1/showing/submit-lead` | browser |
@@ -32,6 +32,12 @@ All in `src/lib/portal.ts`. Base URL: `NEXT_PUBLIC_PORTAL_BASE_URL` (default `ht
 | Contact form | `POST /api/lead-submit` | server, via `/api/contact` |
 
 Listings are portal "adverts" (one card per room/suite type per floor band), so the tour endpoints are called with the listing **slug**, exactly as the MoveSmart site does.
+
+## Caching & images (same as the MoveSmart site)
+
+- Suite pages are not rendered at build time; each is built on its first visit and cached for 30 min. Home and `/suites/` are cached for 5 min.
+- A cached page is only refreshed when someone visits after it has gone stale — no visitors, no portal requests. If the portal fails, the last good page keeps being served.
+- Images load straight from the portal (`images.unoptimized`), so Vercel's image optimisation quota is never used.
 
 ## Env
 

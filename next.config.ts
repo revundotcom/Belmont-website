@@ -15,7 +15,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
-    formats: ["image/avif", "image/webp"],
+    // Same as the MoveSmart site: photos load straight from the portal (already
+    // .webp), so Vercel's image optimisation and its monthly quota are never used.
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "portal.revun.com" },
       { protocol: "https", hostname: "**.revun.com" },

@@ -14,17 +14,19 @@ import { getListing, getSuites } from "@/lib/bellmont";
 import { applyUrl, isBellmont } from "@/lib/portal";
 import { availabilityText, listingGallery, parseListingCopy, toSuite } from "@/lib/suite";
 
-export const revalidate = 300;
+export const revalidate = 1800;
 export const dynamicParams = true;
 
 type Props = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
-  try {
-    return (await getSuites()).map((s) => ({ slug: s.slug }));
-  } catch {
-    return [];
-  }
+/*
+ * Same as the MoveSmart site: nothing is rendered at build time. Each suite page
+ * is built on its first visit, cached, and only refreshed when someone visits
+ * after it has gone stale — no visitors, no portal requests. If a refresh fails,
+ * the last good page keeps being served.
+ */
+export function generateStaticParams() {
+  return [];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

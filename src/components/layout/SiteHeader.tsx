@@ -62,7 +62,7 @@ export function SiteHeader() {
             <Phone className="size-4" aria-hidden /> {site.phone}
           </a>
           <Link href="/suites/" className="btn-canvas min-h-[2.5rem] px-5 text-sm">
-            Book a showing
+            Schedule a Tour
           </Link>
         </div>
 
@@ -93,7 +93,7 @@ export function SiteHeader() {
             ))}
             <div className="mt-auto space-y-3 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-8">
               <Link href="/suites/" onClick={() => setOpen(false)} className="btn-canvas w-full">
-                Book a showing
+                Schedule a Tour
               </Link>
               <a href={site.phoneHref} className="btn-outline-light w-full">
                 <Phone className="size-4" aria-hidden /> Call {site.phone}

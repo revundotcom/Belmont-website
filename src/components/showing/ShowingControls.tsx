@@ -16,8 +16,8 @@ export function ShowingStrip() {
     <div className="rounded-[1.25rem] border border-grey/60 bg-canvas-soft p-6 sm:p-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="eyebrow text-bell">Showings</p>
-          <h2 className="type-h2 mt-3">{!loading && !hasSlots ? "Request a showing" : "Book a showing"}</h2>
+          <p className="eyebrow text-bell">Tours</p>
+          <h2 className="type-h2 mt-3">{!loading && !hasSlots ? "Request a Tour" : "Schedule a Tour"}</h2>
         </div>
         {!loading && hasSlots && (
           <p className="text-sm text-brown-muted">
@@ -48,11 +48,11 @@ export function ShowingStrip() {
   );
 }
 
-export function ShowingButton({ className, label = "Book a showing" }: { className?: string; label?: string }) {
-  const { open } = useShowing();
+export function ShowingButton({ className }: { className?: string }) {
+  const { open, loading, hasSlots } = useShowing();
   return (
     <button type="button" onClick={() => open()} className={cn("btn-outline", className)}>
-      <CalendarCheck className="size-4" aria-hidden /> {label}
+      <CalendarCheck className="size-4" aria-hidden /> {!loading && !hasSlots ? "Request a Tour" : "Schedule a Tour"}
     </button>
   );
 }
@@ -67,8 +67,8 @@ export function MobileActionBar({ applyHref, priceLabel, priceUnit }: { applyHre
           <p className="font-serif text-[1.375rem] leading-none text-bell">{priceLabel}</p>
           <p className="truncate text-[0.6875rem] text-brown-muted">{priceUnit.replace("/ month per room", "per room / mo").replace("/ month", "per month")}</p>
         </div>
-        <button type="button" onClick={() => open()} className="btn-outline min-h-[2.75rem] shrink-0 whitespace-nowrap px-3.5 text-sm" aria-label="Book a showing">
-          <CalendarCheck className="size-4" aria-hidden /> Showing
+        <button type="button" onClick={() => open()} className="btn-outline min-h-[2.75rem] shrink-0 whitespace-nowrap px-3.5 text-sm" aria-label="Schedule a Tour">
+          <CalendarCheck className="size-4" aria-hidden /> Tour
         </button>
         <a href={applyHref} className="btn-plum min-h-[2.75rem] shrink-0 whitespace-nowrap px-4 text-sm">
           Apply Now
