@@ -10,7 +10,7 @@ export const site = {
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.thebellmont.ca").replace(/\/$/, ""),
   tagline: "Two buildings. One community.",
   description:
-    "The Bellmont at 200 Old Carriage Drive, Kitchener: private rooms and whole 3 and 4-bedroom suites across two towers, minutes from Conestoga College. See live availability, book a showing and apply online.",
+    "The Bellmont at 200 Old Carriage Drive, Kitchener: private rooms and whole 3 and 4-bedroom suites across two towers, minutes from Conestoga College. See prices, book a showing and apply online.",
   phone: "833-501-7501",
   phoneHref: "tel:+18335017501",
   phoneHours: "24 hours a day, 7 days a week",

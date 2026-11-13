@@ -12,7 +12,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { amenityGroups, site } from "@/data/site";
 import { getListing, getSuites } from "@/lib/bellmont";
 import { applyUrl, isBellmont } from "@/lib/portal";
-import { availabilityText, listingGallery, parseListingCopy, toSuite } from "@/lib/suite";
+import { listingGallery, parseListingCopy, toSuite } from "@/lib/suite";
 
 export const revalidate = 1800;
 export const dynamicParams = true;
@@ -249,10 +249,6 @@ export default async function SuitePage({ params }: Props) {
                 {suite.priceLabel}
               </p>
               <p className="mt-2 text-sm text-brown-muted">{suite.priceUnit} · 12-month lease</p>
-              <p className="mt-5 flex items-center gap-2 text-sm font-semibold text-bell">
-                <span className={`inline-block size-2 rounded-full ${suite.availableCount > 0 ? "bg-bell" : "bg-grey"}`} aria-hidden />
-                {availabilityText(suite)}
-              </p>
               <div className="mt-6 space-y-3">
                 <a href={apply} className="btn-plum w-full">
                   Apply Now <ExternalLink className="size-4" aria-hidden />

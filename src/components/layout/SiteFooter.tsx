@@ -49,7 +49,7 @@ export function SiteFooter() {
       <div className="border-t border-canvas/10">
         <div className="container flex flex-col gap-2 py-6 text-xs text-canvas/60 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {year} The Bellmont. All rights reserved.</p>
-          <p>Prices and availability update live and can change without notice.</p>
+          <p>Prices can change without notice.</p>
         </div>
       </div>
     </footer>

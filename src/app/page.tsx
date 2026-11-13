@@ -31,8 +31,6 @@ export default async function HomePage() {
   const photos = await getBuildingPhotos(suites);
   const roomFrom = priceFrom(suites, (s) => s.arrangement === "room");
   const suiteFrom = priceFrom(suites, (s) => s.arrangement === "suite");
-  const roomsAvailable = suites.filter((s) => s.arrangement === "room").reduce((n, s) => n + s.availableCount, 0);
-  const suitesAvailable = suites.filter((s) => s.arrangement === "suite").reduce((n, s) => n + s.availableCount, 0);
   const featured = pickFeatured(suites);
   const towerAImage = portalImage(site.heroImage);
   const towerBImage = portalImage(site.heroImageB);
@@ -65,7 +63,7 @@ export default async function HomePage() {
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link href="/suites/" className="btn-canvas">
-                See available suites <ArrowRight className="size-4" aria-hidden />
+                See our suites <ArrowRight className="size-4" aria-hidden />
               </Link>
               <a href={site.phoneHref} className="btn-outline-light">
                 <Phone className="size-4" aria-hidden /> {site.phone}
@@ -96,7 +94,7 @@ export default async function HomePage() {
             {[
               { k: "Private rooms from", v: roomFrom != null ? `${formatMoney(roomFrom)}/mo` : "—" },
               { k: "Whole suites from", v: suiteFrom != null ? `${formatMoney(suiteFrom)}/mo` : "—" },
-              { k: "Available now", v: `${roomsAvailable + suitesAvailable}` },
+              { k: "Lease", v: "12 months" },
               { k: "Utilities", v: "All but hydro" },
             ].map((s) => (
               <div key={s.k} className="pr-4">
@@ -132,8 +130,6 @@ export default async function HomePage() {
                 body: "A furnished bedroom of your own inside a 3 or 4-bedroom suite, on an individual 12-month lease. Share the kitchen, living room, balcony and two bathrooms with your suitemates — and nothing else.",
                 from: roomFrom,
                 unit: "per room / month",
-                count: roomsAvailable,
-                noun: "rooms",
               },
               {
                 tower: "B",
@@ -141,8 +137,6 @@ export default async function HomePage() {
                 body: "A complete 3 or 4-bedroom suite on one lease, for families, friends and professionals. Two full bathrooms, in-suite laundry and a private balcony.",
                 from: suiteFrom,
                 unit: "per suite / month",
-                count: suitesAvailable,
-                noun: "suites",
               },
             ].map((t, i) => (
               <Reveal key={t.tower} delay={i * 0.08}>
@@ -150,12 +144,7 @@ export default async function HomePage() {
                   href={`/suites/?tower=${t.tower}`}
                   className="group flex h-full flex-col rounded-[1.25rem] border border-grey/60 bg-canvas-soft p-8 transition-colors hover:border-bell/50 lg:p-10"
                 >
-                  <div className="flex items-center justify-between">
-                    <Eyebrow>Tower {t.tower}</Eyebrow>
-                    <span className="text-sm font-semibold text-bell">
-                      {t.count} {t.noun} available
-                    </span>
-                  </div>
+                  <Eyebrow>Tower {t.tower}</Eyebrow>
                   <h3 className="type-h2 mt-5 text-bell">{t.title}</h3>
                   <p className="mt-4 text-body text-brown">{t.body}</p>
                   <div className="mt-auto flex items-end justify-between gap-4 pt-10">
@@ -179,7 +168,7 @@ export default async function HomePage() {
       <section id="suites" className="border-t border-grey/50 bg-canvas-soft/60 py-20 lg:py-28">
         <div className="container">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <SectionHeading eyebrow="Suites" title="Available now" />
+            <SectionHeading eyebrow="Suites" title="Find your suite." />
             <Link href="/suites/" className="btn-outline self-start md:self-auto">
               All {suites.length} listings <ArrowRight className="size-4" aria-hidden />
             </Link>
@@ -281,7 +270,7 @@ export default async function HomePage() {
           <SectionHeading eyebrow="How it works" title="Three steps to your keys." align="center" />
           <ol className="mt-14 grid gap-6 md:grid-cols-3">
             {[
-              { icon: Search, title: "Choose a suite", body: "Browse live availability across both towers. Prices and counts update from our leasing system." },
+              { icon: Search, title: "Choose a suite", body: "Browse rooms and suites across both towers, with prices straight from our leasing system." },
               { icon: CalendarCheck, title: "Book a showing", body: "Pick an open time on any suite's page and it's booked straight into our calendar. No back-and-forth." },
               { icon: FileSignature, title: "Apply online", body: "Press Apply Now, sign in to our secure leasing portal and finish your application in minutes." },
             ].map((s, i) => (

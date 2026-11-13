@@ -103,12 +103,6 @@ export function sortSuites(list: Suite[]): Suite[] {
   );
 }
 
-export function availabilityText(s: Pick<Suite, "availableCount" | "upcomingCount" | "arrangement">): string {
-  const noun = s.arrangement === "room" ? "room" : "suite";
-  if (s.availableCount > 0) return `${s.availableCount} ${noun}${s.availableCount === 1 ? "" : "s"} available`;
-  if (s.upcomingCount > 0) return `${s.upcomingCount} coming available`;
-  return "Join the waitlist";
-}
 
 // ---------------------------------------------------------------------------
 // Listing copy → structured sections

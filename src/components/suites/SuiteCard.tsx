@@ -2,11 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Bath, BedDouble } from "lucide-react";
 import { LogoMark } from "@/components/brand/Logo";
-import { availabilityText, type Suite } from "@/lib/suite";
-import { cn } from "@/lib/utils";
+import type { Suite } from "@/lib/suite";
 
 export function SuiteCard({ suite, priority = false }: { suite: Suite; priority?: boolean }) {
-  const available = suite.availableCount > 0;
   return (
     <Link
       href={`/suites/${suite.slug}/`}
@@ -64,11 +62,7 @@ export function SuiteCard({ suite, priority = false }: { suite: Suite; priority?
             <p className="mt-1.5 text-xs text-brown-muted">{suite.priceUnit}</p>
           </div>
           <div className="text-right">
-            <p className={cn("text-xs font-semibold", available ? "text-bell" : "text-brown-muted")}>
-              <span className={cn("mr-1.5 inline-block size-1.5 rounded-full align-middle", available ? "bg-bell" : "bg-grey")} aria-hidden />
-              {availabilityText(suite)}
-            </p>
-            <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-plum">
+            <span className="inline-flex items-center gap-1 text-sm font-semibold text-plum">
               View suite <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
             </span>
           </div>
